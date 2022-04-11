@@ -126,7 +126,7 @@ class Database() :
         conn = sqlite3.connect(':memory:')
         cursor = conn.cursor()
 
-        query = f"""CREATE TABLE IF NOT EXIST {media_group_id} (fileId text)"""
+        query = f"""CREATE TABLE IF NOT EXISTS {media_group_id} (fileId text)"""
         cursor.execute(query)
         conn.commit()
 
