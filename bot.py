@@ -36,7 +36,10 @@ def msgHndlr(update: Update, context: CallbackContext) :
         context.bot.send_message(chat_id=update.effective_chat.id, text='Аккаунт добавлен')
 
 def repliedMsg(update: Update, context: CallbackContext) :
-    print(update.message)
+    media_group_id = update.message['media_group_id']
+    fileId = update.message['photo'][-1]['file_id']
+    db.createMemoryImg(media_group_id=media_group_id, fileId=fileId)
+    db.getMemoryImg(media_group_id=media_group_id)
 
 def start(update: Update, context: CallbackContext) :
     context.bot.send_message(chat_id=update.effective_chat.id, text='Чтобы получить контент из поста Инстаграм, просто пришли мне ссылку на пост')
