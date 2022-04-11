@@ -125,12 +125,13 @@ class Database() :
     def createMemoryImg(self, media_group_id:str , fileId :str) :
         conn = sqlite3.connect(':memory:')
         cursor = conn.cursor()
+        tablename = f'table_{media_group_id}'
 
-        query = f"""CREATE TABLE IF NOT EXISTS {media_group_id} (fileId text)"""
+        query = f"""CREATE TABLE IF NOT EXISTS {tablename} (fileId text)"""
         cursor.execute(query)
         conn.commit()
 
-        query = f"""INSERT INTO {media_group_id} VALUES ('{fileId}')"""
+        query = f"""INSERT INTO {tablename} VALUES ('{fileId}')"""
 
         cursor.execute(query)
         conn.commit()
@@ -138,8 +139,9 @@ class Database() :
     def getMemoryImg(self, media_group_id:str) : 
         conn = sqlite3.connect(':memory:')
         cursor = conn.cursor()
+        tablename = f'table_{media_group_id}'
 
-        query = """SELECT * FROM {media_group_id}"""
+        query = """SELECT * FROM {tablename}"""
         cursor.execute(query)
 
         print(cursor.fetchall())
