@@ -5,6 +5,7 @@ import json
 #conn = sqlite3.connect(pt.abspath('db/database.db'))
 #cursor = conn.cursor()
 #query = """CREATE TABLE profiles (user_pk text , login text, profile_pic text, lastpostpk text, lastpost_url, is_active text)"""
+#query = f"""CREATE TABLE IF NOT EXISTS table_13197339927655154 (fileId text)"""
 #cursor.execute(query)
 #conn.commit()
 
@@ -123,7 +124,7 @@ class Database() :
                 return data
 
     def createMemoryImg(self, media_group_id:str , fileId :str) :
-        conn = sqlite3.connect(':memory:')
+        conn = sqlite3.connect(pt.abspath('db/database.db'))
         cursor = conn.cursor()
         tablename = f'table_{media_group_id}'
 
@@ -137,7 +138,7 @@ class Database() :
         conn.commit()
 
     def getMemoryImg(self, media_group_id:str) : 
-        conn = sqlite3.connect(':memory:')
+        conn = sqlite3.connect(pt.abspath('db/database.db'))
         cursor = conn.cursor()
         tablename = f'table_{media_group_id}'
 
