@@ -140,9 +140,8 @@ class Database() :
         conn = sqlite3.connect(':memory:')
         cursor = conn.cursor()
         tablename = f'table_{media_group_id}'
-        print(tablename)
 
-        query = """SELECT * FROM {tablename}"""
+        query = f"""SELECT * FROM {tablename}"""
         cursor.execute(query)
 
         print(cursor.fetchall())
